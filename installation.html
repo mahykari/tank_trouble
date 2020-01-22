@@ -1,0 +1,96 @@
+
+<!-- saved from url=(0100)https://cecm.ut.ac.ir/pluginfile.php?file=%2F150819%2Fmod_resource%2Fcontent%2F3%2FInstallation.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></head><body><details>
+<p></p><summary>Table of Contents</summary><p></p>
+<ul>
+<li><a href="https://cecm.ut.ac.ir/pluginfile.php?file=%2F150819%2Fmod_resource%2Fcontent%2F3%2FInstallation.html#mac-os-users">Mac OS users</a>
+<ul>
+<li><a href="https://cecm.ut.ac.ir/pluginfile.php?file=%2F150819%2Fmod_resource%2Fcontent%2F3%2FInstallation.html#install-with-homebrew">Install with HomeBrew</a></li>
+<li><a href="https://cecm.ut.ac.ir/pluginfile.php?file=%2F150819%2Fmod_resource%2Fcontent%2F3%2FInstallation.html#manual-install">Manual Install</a></li>
+</ul></li>
+<li><a href="https://cecm.ut.ac.ir/pluginfile.php?file=%2F150819%2Fmod_resource%2Fcontent%2F3%2FInstallation.html#linux-users">Linux users</a></li>
+<li><a href="https://cecm.ut.ac.ir/pluginfile.php?file=%2F150819%2Fmod_resource%2Fcontent%2F3%2FInstallation.html#test-installation">Test Installation</a></li>
+</ul>
+</details>
+<hr>
+<p>In order to use RSDL you have to install SDL2 library on your system.</p>
+<h2 id="mac-os-users">Mac OS users</h2>
+<h3 id="install-with-homebrew">Install with HomeBrew</h3>
+<ol type="1">
+<li>Install HomeBrew:<br>
+</li>
+</ol>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="https://cecm.ut.ac.ir/pluginfile.php?file=%2F150819%2Fmod_resource%2Fcontent%2F3%2FInstallation.html#cb1-1"></a><span class="ex">/usr/bin/ruby</span> -e <span class="st">"</span><span class="va">$(</span><span class="ex">curl</span> -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install<span class="va">)</span><span class="st">"</span></span></code></pre></div>
+<ol start="2" type="1">
+<li>Install SDL with HomeBrew:</li>
+</ol>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="https://cecm.ut.ac.ir/pluginfile.php?file=%2F150819%2Fmod_resource%2Fcontent%2F3%2FInstallation.html#cb2-1"></a><span class="ex">brew</span> install sdl2</span>
+<span id="cb2-2"><a href="https://cecm.ut.ac.ir/pluginfile.php?file=%2F150819%2Fmod_resource%2Fcontent%2F3%2FInstallation.html#cb2-2"></a><span class="ex">brew</span> install sdl2_image</span>
+<span id="cb2-3"><a href="https://cecm.ut.ac.ir/pluginfile.php?file=%2F150819%2Fmod_resource%2Fcontent%2F3%2FInstallation.html#cb2-3"></a><span class="ex">brew</span> install sdl2_mixer</span>
+<span id="cb2-4"><a href="https://cecm.ut.ac.ir/pluginfile.php?file=%2F150819%2Fmod_resource%2Fcontent%2F3%2FInstallation.html#cb2-4"></a><span class="ex">brew</span> install sdl2_ttf</span></code></pre></div>
+<ol start="3" type="1">
+<li>Ensure that following libraries are included in <a href="https://cecm.ut.ac.ir/blob/master/src/rsdl.hpp"><em>rsdl.hpp</em></a>:</li>
+</ol>
+<div class="sourceCode" id="cb3"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb3-1"><a href="https://cecm.ut.ac.ir/pluginfile.php?file=%2F150819%2Fmod_resource%2Fcontent%2F3%2FInstallation.html#cb3-1"></a><span class="pp">#include </span><span class="im">&lt;SDL2/SDL.h&gt;</span></span>
+<span id="cb3-2"><a href="https://cecm.ut.ac.ir/pluginfile.php?file=%2F150819%2Fmod_resource%2Fcontent%2F3%2FInstallation.html#cb3-2"></a><span class="pp">#include </span><span class="im">&lt;SDL2/SDL_image.h&gt;</span></span>
+<span id="cb3-3"><a href="https://cecm.ut.ac.ir/pluginfile.php?file=%2F150819%2Fmod_resource%2Fcontent%2F3%2FInstallation.html#cb3-3"></a><span class="pp">#include </span><span class="im">&lt;SDL2/SDL_mixer.h&gt;</span></span>
+<span id="cb3-4"><a href="https://cecm.ut.ac.ir/pluginfile.php?file=%2F150819%2Fmod_resource%2Fcontent%2F3%2FInstallation.html#cb3-4"></a><span class="pp">#include </span><span class="im">&lt;SDL2/SDL_ttf.h&gt;</span></span></code></pre></div>
+<ol start="4" type="1">
+<li>To compile <code>rsdl.cpp</code>, you have to compile it with <code>-l</code> option to include <em>SDL2</em>, <em>SDL2_image</em>, <em>SDL2_ttf</em> and <em>SDL2_mixer</em> libraries.Run the following command:</li>
+</ol>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="https://cecm.ut.ac.ir/pluginfile.php?file=%2F150819%2Fmod_resource%2Fcontent%2F3%2FInstallation.html#cb4-1"></a><span class="ex">g++</span> [your cpp files] rsdl.cpp -l SDL2 -l SDL2_image -l SDL2_ttf -l SDL2_mixer</span></code></pre></div>
+<h3 id="manual-install">Manual Install</h3>
+<ol type="1">
+<li><p>Download the latest SDL2 development library dmg file from the <a href="http://www.libsdl.org/download-2.0.php#source">SDL website</a> (currently latest version is 2.0.6)</p></li>
+<li><p>Download SDL2_image development library from this <a href="https://www.libsdl.org/projects/SDL_image/">page</a></p></li>
+<li><p>Download SDL2_mixer development library from this <a href="https://www.libsdl.org/projects/SDL_mixer/">page</a></p></li>
+<li><p>Download SDL2_ttf development library from this <a href="https://www.libsdl.org/projects/SDL_ttf/">page</a></p></li>
+<li><p>Now open these dmg files and copy <strong><em>SDL2.framework</em></strong>,<strong><em>SDL2_ttf.framework</em></strong> and <strong><em>SDL2_image.framework</em></strong> files to <em>/Library/Frameworks</em></p></li>
+<li><p>Replace SDL libraries inclusion in <a href="https://cecm.ut.ac.ir/blob/master/src/rsdl.hpp"><em>rsdl.hpp</em></a> with following ones:</p></li>
+</ol>
+<div class="sourceCode" id="cb5"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb5-1"><a href="https://cecm.ut.ac.ir/pluginfile.php?file=%2F150819%2Fmod_resource%2Fcontent%2F3%2FInstallation.html#cb5-1"></a><span class="pp">#include </span><span class="im">&lt;SDL2/SDL.h&gt;</span></span>
+<span id="cb5-2"><a href="https://cecm.ut.ac.ir/pluginfile.php?file=%2F150819%2Fmod_resource%2Fcontent%2F3%2FInstallation.html#cb5-2"></a><span class="pp">#include </span><span class="im">&lt;SDL2_image/SDL_image.h&gt;</span></span>
+<span id="cb5-3"><a href="https://cecm.ut.ac.ir/pluginfile.php?file=%2F150819%2Fmod_resource%2Fcontent%2F3%2FInstallation.html#cb5-3"></a><span class="pp">#include </span><span class="im">&lt;SDL_mixer/SDL_mixer.h&gt;</span></span>
+<span id="cb5-4"><a href="https://cecm.ut.ac.ir/pluginfile.php?file=%2F150819%2Fmod_resource%2Fcontent%2F3%2FInstallation.html#cb5-4"></a><span class="pp">#include </span><span class="im">&lt;SDL2_ttf/SDL_ttf.h&gt;</span></span></code></pre></div>
+<ol start="7" type="1">
+<li>To compile <code>rsdl.cpp</code>, you have to compile it with <code>-framework</code> option to include <em>SDL2</em>, <em>SDL2_image</em>, <em>SDL2_ttf</em> and <em>SDL2_mixer</em> libraries. Run the following command:</li>
+</ol>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="https://cecm.ut.ac.ir/pluginfile.php?file=%2F150819%2Fmod_resource%2Fcontent%2F3%2FInstallation.html#cb6-1"></a><span class="ex">g++</span> [your cpp files] rsdl.cpp -framework SDL2 -framework SDL2_image -framework SDL2_ttf -framework SDL2_mixer</span></code></pre></div>
+<h2 id="linux-users">Linux users</h2>
+<ol type="1">
+<li><p>Make sure you have the following <em>apt-get</em> repo:‍ <code>http://us.archive.ubuntu.com/ubuntu</code> and your <em>apt-get</em> packages list is up to date.</p>
+<ol type="1">
+<li>Open your repos list with the following command:</li>
+</ol>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="https://cecm.ut.ac.ir/pluginfile.php?file=%2F150819%2Fmod_resource%2Fcontent%2F3%2FInstallation.html#cb7-1"></a><span class="fu">sudo</span> nano /etc/apt/sources.list</span></code></pre></div>
+<ol start="2" type="1">
+<li>Ensure that following line exists in the file, if it does not exists, add it to the file:</li>
+</ol>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="https://cecm.ut.ac.ir/pluginfile.php?file=%2F150819%2Fmod_resource%2Fcontent%2F3%2FInstallation.html#cb8-1"></a><span class="ex">deb</span> http://us.archive.ubuntu.com/ubuntu trusty main universe</span></code></pre></div>
+<ol start="3" type="1">
+<li>Update your <em>apt-get</em> packages list:</li>
+</ol>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="https://cecm.ut.ac.ir/pluginfile.php?file=%2F150819%2Fmod_resource%2Fcontent%2F3%2FInstallation.html#cb9-1"></a><span class="fu">sudo</span> apt-get update</span></code></pre></div></li>
+<li><p>Run command below to install SDL2, SDL2_image and SDL2_ttf packages<br>
+</p></li>
+</ol>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb10-1"><a href="https://cecm.ut.ac.ir/pluginfile.php?file=%2F150819%2Fmod_resource%2Fcontent%2F3%2FInstallation.html#cb10-1"></a><span class="fu">sudo</span> apt-get install libsdl2-dev libsdl2-image-dev libsdl2-ttf-dev libsdl2-mixer-dev </span></code></pre></div>
+<ol start="3" type="1">
+<li>Ensure that following libraries are included in <a href="https://cecm.ut.ac.ir/blob/master/src/rsdl.hpp"><em>rsdl.hpp</em></a>:</li>
+</ol>
+<div class="sourceCode" id="cb11"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb11-1"><a href="https://cecm.ut.ac.ir/pluginfile.php?file=%2F150819%2Fmod_resource%2Fcontent%2F3%2FInstallation.html#cb11-1"></a><span class="pp">#include </span><span class="im">&lt;SDL2/SDL.h&gt;</span></span>
+<span id="cb11-2"><a href="https://cecm.ut.ac.ir/pluginfile.php?file=%2F150819%2Fmod_resource%2Fcontent%2F3%2FInstallation.html#cb11-2"></a><span class="pp">#include </span><span class="im">&lt;SDL2/SDL_image.h&gt;</span></span>
+<span id="cb11-3"><a href="https://cecm.ut.ac.ir/pluginfile.php?file=%2F150819%2Fmod_resource%2Fcontent%2F3%2FInstallation.html#cb11-3"></a><span class="pp">#include </span><span class="im">&lt;SDL2/SDL_mixer.h&gt;</span></span>
+<span id="cb11-4"><a href="https://cecm.ut.ac.ir/pluginfile.php?file=%2F150819%2Fmod_resource%2Fcontent%2F3%2FInstallation.html#cb11-4"></a><span class="pp">#include </span><span class="im">&lt;SDL2/SDL_ttf.h&gt;</span></span></code></pre></div>
+<ol start="4" type="1">
+<li>To compile <code>rsdl.cpp</code>, you have to compile it with <code>-l</code> option to include <em>SDL2</em>, <em>SDL2_image</em>, <em>SDL2_ttf</em> and <em>SDL2_mixer</em> libraries.Run the following command:</li>
+</ol>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb12-1"><a href="https://cecm.ut.ac.ir/pluginfile.php?file=%2F150819%2Fmod_resource%2Fcontent%2F3%2FInstallation.html#cb12-1"></a><span class="ex">g++</span> [your cpp files] rsdl.cpp -l SDL2 -l SDL2_image -l SDL2_ttf -l SDL2_mixer</span></code></pre></div>
+<h1 id="test-installation">Test Installation</h1>
+<p>To test your installation download or clone the repository (from this <a href="https://cecm.ut.ac.ir/">link</a>) and go into the downloaded directory, then run the <code>make</code> command to build the test file.<br>
+Finally running <code>./test.out</code> should come up with a window with UT background. <code>./examle.out</code> is another example.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb13-1"><a href="https://cecm.ut.ac.ir/pluginfile.php?file=%2F150819%2Fmod_resource%2Fcontent%2F3%2FInstallation.html#cb13-1"></a><span class="bu">cd</span> RSDL   </span>
+<span id="cb13-2"><a href="https://cecm.ut.ac.ir/pluginfile.php?file=%2F150819%2Fmod_resource%2Fcontent%2F3%2FInstallation.html#cb13-2"></a><span class="fu">make</span>    </span>
+<span id="cb13-3"><a href="https://cecm.ut.ac.ir/pluginfile.php?file=%2F150819%2Fmod_resource%2Fcontent%2F3%2FInstallation.html#cb13-3"></a><span class="ex">./test.out</span></span>
+<span id="cb13-4"><a href="https://cecm.ut.ac.ir/pluginfile.php?file=%2F150819%2Fmod_resource%2Fcontent%2F3%2FInstallation.html#cb13-4"></a><span class="ex">./example.out</span></span></code></pre></div>
+</body></html>
