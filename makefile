@@ -6,8 +6,8 @@ CC_OPT = -c
 BUILD_DIR = build
 SRC_DIR = source_files
 
-main.out: $(BUILD_DIR)/main.o $(BUILD_DIR)/tank.o $(BUILD_DIR)/map.o $(BUILD_DIR)/bullets.o $(BUILD_DIR)/funcs.o $(BUILD_DIR)/rsdl.o
-	${CC} ${CC_STD} $(BUILD_DIR)/main.o $(BUILD_DIR)/tank.o $(BUILD_DIR)/map.o $(BUILD_DIR)/bullets.o $(BUILD_DIR)/funcs.o $(BUILD_DIR)/rsdl.o ${CC_LIB} -o main.out
+main.out: $(BUILD_DIR)/main.o $(BUILD_DIR)/tank.o $(BUILD_DIR)/map.o $(BUILD_DIR)/bullets.o $(BUILD_DIR)/misc_funcs.o $(BUILD_DIR)/drawing.o  $(BUILD_DIR)/collision.o $(BUILD_DIR)/rsdl.o
+	${CC} ${CC_STD} $(BUILD_DIR)/main.o $(BUILD_DIR)/tank.o $(BUILD_DIR)/map.o $(BUILD_DIR)/bullets.o $(BUILD_DIR)/misc_funcs.o $(BUILD_DIR)/drawing.o $(BUILD_DIR)/collision.o $(BUILD_DIR)/rsdl.o ${CC_LIB} -o main.out
 
 $(BUILD_DIR)/main.o: $(SRC_DIR)/rsdl.hpp $(SRC_DIR)/main.cpp
 	${CC} ${CC_STD} ${CC_OPT} $(SRC_DIR)/main.cpp -o $(BUILD_DIR)/main.o
@@ -21,11 +21,17 @@ $(BUILD_DIR)/map.o: $(SRC_DIR)/rsdl.hpp $(SRC_DIR)/map.cpp
 $(BUILD_DIR)/bullets.o: $(SRC_DIR)/rsdl.hpp $(SRC_DIR)/bullets.cpp
 	${CC} ${CC_STD} ${CC_OPT} $(SRC_DIR)/bullets.cpp -o $(BUILD_DIR)/bullets.o
 
-$(BUILD_DIR)/funcs.o: $(SRC_DIR)/rsdl.hpp $(SRC_DIR)/funcs.cpp
-	${CC} ${CC_STD} ${CC_OPT} $(SRC_DIR)/funcs.cpp -o $(BUILD_DIR)/funcs.o
+$(BUILD_DIR)/misc_funcs.o: $(SRC_DIR)/rsdl.hpp $(SRC_DIR)/misc_funcs.cpp
+	${CC} ${CC_STD} ${CC_OPT} $(SRC_DIR)/misc_funcs.cpp -o $(BUILD_DIR)/misc_funcs.o
+
+$(BUILD_DIR)/drawing.o: $(SRC_DIR)/rsdl.hpp $(SRC_DIR)/drawing.cpp
+	${CC} ${CC_STD} ${CC_OPT} $(SRC_DIR)/drawing.cpp -o $(BUILD_DIR)/drawing.o
 
 $(BUILD_DIR)/rsdl.o: $(SRC_DIR)/rsdl.hpp $(SRC_DIR)/rsdl.cpp
 	${CC} ${CC_STD} ${CC_OPT} $(SRC_DIR)/rsdl.cpp -o $(BUILD_DIR)/rsdl.o
+
+$(BUILD_DIR)/collision.o: $(SRC_DIR)/rsdl.hpp $(SRC_DIR)/collision.cpp
+	${CC} ${CC_STD} ${CC_OPT} $(SRC_DIR)/collision.cpp -o $(BUILD_DIR)/collision.o
 
 clean:
 	rm build/*

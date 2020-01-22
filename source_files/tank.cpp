@@ -4,11 +4,13 @@
 #include <iostream>
 #include <cmath>
 
-Tank::Tank(std::string _filename, Point _position, double _rotation)
+Tank::Tank(int _id, std::string _status, Point _position, double _rotation)
 {
-    filename = _filename;
+    id = _id;
+    status = _status; 
     position = _position;
     rotation = _rotation;
+    filename = Assets_Dir + "/" + Generic_Tank + std::to_string(id) + "-" + status + Extension;
 }
 
 void Tank::set_filename(std::string _filename)
@@ -41,6 +43,16 @@ std::string Tank::get_filename()
     return filename;
 }
 
+int Tank::get_id() 
+{
+    return id;
+}
+
+std::string Tank::get_status() 
+{
+    return status;
+}
+
 void Tank::switch_clockwise_rotation(bool state)
 {
     i_should_rotate_clockwise = state;
@@ -70,20 +82,16 @@ int Tank::get_rotation_state()
 
 void Tank::move()
 {
-    double pi = 3.1415926536;
-    int v_x = (double)TANK_VELOCITY * cos(((double)rotation * pi) / 180.00);
-    int v_y = (double)TANK_VELOCITY * sin(((double)rotation * pi) / 180.00);
-    // std::cout << v_x << v_y << std::endl;
+    int v_x = (double)TANK_VELOCITY * cos(((double)rotation * PI) / 180.00);
+    int v_y = (double)TANK_VELOCITY * sin(((double)rotation * PI) / 180.00);
     if(i_should_move_forward) position =  position + Point(v_x, v_y);
     if(i_should_move_backward) position =  position - Point(v_x, v_y);
 }
 
 void Tank::move_back()
 {
-    double pi = 3.1415926536;
-    int v_x = (double)TANK_VELOCITY * cos((rotation * pi) / 180.00);
-    int v_y = (double)TANK_VELOCITY * sin((rotation * pi) / 180.00);
-    // std::cout << v_x << v_y << std::endl;
+    int v_x = (double)TANK_VELOCITY * cos((rotation * PI) / 180.00);
+    int v_y = (double)TANK_VELOCITY * sin((rotation * PI) / 180.00);
     if(i_should_move_forward) position =  position - Point(v_x, v_y);
     if(i_should_move_backward) position =  position + Point(v_x, v_y);   
 }

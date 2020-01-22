@@ -20,12 +20,14 @@ class All_Bullets
         std::vector<Bullet> tank_1_bullets;
         std::vector<Bullet> tank_2_bullets;
         std::vector<Bullet> power_up_bullets;
+        Map* map;
     public:
-        All_Bullets(int tank_count);
+        All_Bullets(int tank_count, Map* _map);
         void add_to_tank_bullets(int tank_id, Point _position, double _rotation);
         void add_to_power_up_bullets(Point _position, double _rotation);
-        void move_and_check_bullet_wall_collision(Bullet& b, const Map& map);
-        void check_all_bullets(Map& map);
+        void move(Bullet& b);
+        void check_bullet_wall_collision(Bullet& b);
+        void check_all_bullets();
         std::vector<std::vector<Bullet> > get_tank_bullets();
         std::vector<Bullet> get_powerup_bullets();
 };

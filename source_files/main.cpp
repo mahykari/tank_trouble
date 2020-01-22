@@ -18,15 +18,15 @@ int main(int argc, char* argv[]) {
     Point tank_1_position, tank_2_position;
     string map_input_dir = argv[1];
     
-    Map map;
+    Map* map = new Map();
 
     read_map(map_input_dir, win_width, win_height, map, tank_1_position, tank_2_position);
 
     Window game_window(win_width * 3 * TANK_SIZE + 1, win_height * 3 * TANK_SIZE + 1, "Tank Trouble!");
-    All_Bullets all_bullets(2);
+    All_Bullets all_bullets(2, map);
 
-    Tank tank_1("Assets/Tank1-Normal.png", tank_1_position, rand() % 360);
-    Tank tank_2("Assets/Tank2-Normal.png", tank_2_position, rand() % 360);
+    Tank tank_1(1, "Shield", tank_1_position, rand() % 360);
+    Tank tank_2(2, "Shield", tank_2_position, rand() % 360);
     
     game_window.clear();
     draw_tank(game_window, tank_1, tank_2, map);
@@ -39,11 +39,18 @@ int main(int argc, char* argv[]) {
             draw_walls(game_window, map);
             draw_tank(game_window, tank_1, tank_2, map);
             draw_tank(game_window, tank_2, tank_1, map);
-            all_bullets.check_all_bullets(map);
+            all_bullets.check_all_bullets();
             draw_all_bullets(game_window, all_bullets);
             game_window.update_screen();
+            check_tank_bullet_collision(tank_1, all_bullets);
+            check_tank_bullet_collision(tank_2, all_bullets);
             delay(DELAY_PER_FRAME);
         }
         catch(quit_game& qg) { return 0;}
+        catch(fatal_collision& fc) {
+            cout << "Tank " << to_string(fc.tank_id) << " is eliminated\n"; 
+            delay(1000);
+            return 0;
+        }
     }
 }
