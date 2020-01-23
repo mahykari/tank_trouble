@@ -16,10 +16,13 @@ struct Wall
 class Map
 {
     private:
+        int width;
+        int height;
         std::vector<Wall> walls;
     public:
-        int get_height();
         Map();
+        void set_width_and_height(int w, int h);
+        Point get_dimensions();
         std::vector<Wall> get_walls() const;
         void add_to_walls(Wall w);
 };

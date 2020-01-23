@@ -28,12 +28,15 @@ bool check_tank_wall_collision(const Tank& tank, const Map* map) {
 
 void check_tank_bullet_collision(Tank& tank, All_Bullets& all_bullets) {
     const Point t_p = tank.get_position();
-    const vector<vector<Bullet> > b = all_bullets.get_tank_bullets();
+    const vector<vector<Bullet*> > b = all_bullets.get_tank_bullets();
     for(int i = 0; i < b.size(); i++) {
         for(int j = 0; j < b[i].size(); j++) {
-            const Point b_p = b[i][j].position;
+            const Point b_p = b[i][j]->position;
             if(get_distance(t_p, b_p) < HALF_TANK_SIZE) {
                 if(tank.get_status() != "Shield") throw fatal_collision(tank.get_id());
+                else {
+                    b[i][j]->shield_collision = true;
+                }
             }
         }
     }

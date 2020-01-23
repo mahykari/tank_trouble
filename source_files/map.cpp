@@ -12,3 +12,15 @@ void Map::add_to_walls(Wall w)
 }
 
 Map::Map() {}
+
+void Map::set_width_and_height(int w, int h) 
+{
+    width = w;
+    height = h;
+}
+
+Point Map::get_dimensions()
+{
+    Point p(width, height);
+    return p;
+}

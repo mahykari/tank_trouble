@@ -27,7 +27,5 @@ void read_map(std::string dir, int& win_width, int& win_height, Map* map, Point&
 
 void draw_walls(Window& game_window, Map* map);
 void draw_tank(Window& game_window, Tank& tank, Tank& second_tank, Map* map);
-void draw_bullet(Window& game_window,Bullet& b);
-void draw_all_bullets(Window& game_window, All_Bullets& all_bullets);
 
 #endif

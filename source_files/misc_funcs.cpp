@@ -45,8 +45,6 @@ void update_game_window(Window& game_window, Tank& tank_1, Tank& tank_2, All_Bul
                 if(event.get_pressed_key() == 'w') tank_2.switch_moving_forward_state(false);
                 if(event.get_pressed_key() == 's') tank_2.switch_moving_backward_state(false);
 
-                // if(event.get_pressed_key() == 'u') all_bullets.add_to_tank_bullets(1, tank_1.get_position(), tank_1.get_rotation()); 
-                // if(event.get_pressed_key() == 'q') all_bullets.add_to_tank_bullets(2, tank_2.get_position(), tank_2.get_rotation()); 
                 break;
             }
         }    
@@ -100,6 +98,7 @@ void read_map(string dir, int& win_width, int& win_height, Map* map, Point& t_1,
     ifstream map_file(dir.c_str());
 
     map_file >> win_height >> win_width;
+    map->set_width_and_height(win_width, win_height);
     vector<string> wall_positions;
 
     for(int i = 0; i < win_height; i++) {
