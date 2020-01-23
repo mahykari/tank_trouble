@@ -36,27 +36,28 @@ void All_Bullets::check_bullet_wall_collision(Bullet& b) {
     std::vector<Wall> walls = map->get_walls();
     for(int i = 0; i < walls.size(); i++) {
         Wall w = walls[i];
-        if(b.position.x - w.src.x < MAX && b.position.x - w.src.x > 0 && b.position.y >= w.src.y - MAX && b.position.y <= w.dest.y + MAX) {
+        if(b.position.x - w.src.x < MAX && b.position.x - w.src.x > 0 && b.position.y >= w.src.y - HALF_BULLET_SIZE && b.position.y <= w.dest.y + HALF_BULLET_SIZE) {
             b.position.x = w.src.x + MAX;
             b.v_x = -b.v_x;
         }
-
-        if(b.position.y - w.src.y < MAX && b.position.y - w.src.y > 0 && b.position.x >= w.src.x - MAX && b.position.x <= w.dest.x + MAX) {
-            b.position.y = w.src.y + MAX;
-            b.v_y = -b.v_y;
-        }
-
-        if(w.src.x - b.position.x < MAX && w.src.x - b.position.x > 0 && b.position.y >= w.src.y - MAX && b.position.y <= w.dest.y + MAX) {
+        
+        if(w.src.x - b.position.x < MAX && w.src.x - b.position.x > 0 && b.position.y >= w.src.y - HALF_BULLET_SIZE && b.position.y <= w.dest.y + HALF_BULLET_SIZE) {
             b.position.x = w.src.x - MAX;
             b.v_x = -b.v_x;
         }
 
-        if(w.src.y - b.position.y <= MAX && w.src.y - b.position.y > 0 && b.position.x >= w.src.x - MAX && b.position.x <= w.dest.x + MAX) {
+        if(b.position.y - w.src.y < MAX && b.position.y - w.src.y > 0 && b.position.x >= w.src.x - HALF_BULLET_SIZE && b.position.x <= w.dest.x + HALF_BULLET_SIZE) {
+            b.position.y = w.src.y + MAX;
+            b.v_y = -b.v_y;
+        }
+
+        if(w.src.y - b.position.y <= MAX && w.src.y - b.position.y > 0 && b.position.x >= w.src.x - HALF_BULLET_SIZE && b.position.x <= w.dest.x + HALF_BULLET_SIZE) {
             b.position.y = w.src.y - MAX;
             b.v_y = -b.v_y;
         }
     }
 }
+
 void All_Bullets::move(Bullet& b) {
     b.position += Point(b.v_x, b.v_y);
     b.lifetime -= 25;

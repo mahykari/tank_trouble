@@ -6,9 +6,11 @@ const int HALF_TANK_SIZE = TANK_SIZE / 2;
 const int BULLET_SIZE = TANK_SIZE / 5;
 const int HALF_BULLET_SIZE = BULLET_SIZE / 2;
 const int ANGULAR_VELOCITY = 2;
-const int TANK_VELOCITY = 4;
-const int BULLET_VELOCITY = 9;
-const int DELAY_PER_FRAME = 40;
+const int TANK_VELOCITY = 3;
+const int BULLET_VELOCITY = 6;
+const int DELAY_PER_FRAME = 33;
+const int TIME_UNIT = 1000;
+const int BULLET_LIFETIME = 10 * TIME_UNIT; 
 const double PI = 3.1415926536;
 
 const std::string Assets_Dir = "Assets";

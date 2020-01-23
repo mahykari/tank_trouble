@@ -1,0 +1,15 @@
+# all build files
+*.o
+
+#all text files
+*.txt
+
+#all pdf files
+*.pdf
+
+#wouldnt like to add .out to my commits, either
+*.out
+
+# RSDL is not part of my project, so let's just ignore it
+RSDL/*
+

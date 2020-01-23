@@ -19,7 +19,7 @@ int main(int argc, char* argv[]) {
     string map_input_dir = argv[1];
     
     Map* map = new Map();
-
+    cout << "time unit: " << TIME_UNIT << endl;
     read_map(map_input_dir, win_width, win_height, map, tank_1_position, tank_2_position);
 
     Window game_window(win_width * 3 * TANK_SIZE + 1, win_height * 3 * TANK_SIZE + 1, "Tank Trouble!");

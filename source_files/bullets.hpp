@@ -2,12 +2,13 @@
 #define __BULLET_HPP__
 #include "rsdl.hpp"
 #include "map.hpp"
+#include "const_values.hpp"
 #include <vector>
 
 struct Bullet
 {
     Point position;
-    int lifetime = 10000;
+    int lifetime = BULLET_LIFETIME;
     int v_x, v_y;
     Point get_point();
     Bullet(Point _position, int _v, double _rotation);
