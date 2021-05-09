@@ -19,12 +19,17 @@ class Map
         int width;
         int height;
         std::vector<Wall> walls;
+        Window* game_window;
     public:
+        Map(Window* win);
         Map();
-        void set_width_and_height(int w, int h);
         Point get_dimensions();
         std::vector<Wall> get_walls() const;
+        void set_width_and_height(int w, int h);
         void add_to_walls(Wall w);
+        void unify_walls();
+        void set_window(Window* win);
+        void draw();
 };
 
 #endif

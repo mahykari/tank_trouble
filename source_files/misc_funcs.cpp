@@ -29,8 +29,9 @@ void update_game_window(Window& game_window, Tank& tank_1, Tank& tank_2, All_Bul
                 if(event.get_pressed_key() == 'd') tank_2.switch_clockwise_rotation(true);
                 if(event.get_pressed_key() == 'w') tank_2.switch_moving_forward_state(true);
                 if(event.get_pressed_key() == 's') tank_2.switch_moving_backward_state(true);
-                if(event.get_pressed_key() == 'u') all_bullets.add_to_tank_bullets(1, tank_1.get_position(), tank_1.get_rotation()); 
-                if(event.get_pressed_key() == 'q') all_bullets.add_to_tank_bullets(2, tank_2.get_position(), tank_2.get_rotation());   
+                
+                if(event.get_pressed_key() == 'u') tank_1.shoot(); 
+                if(event.get_pressed_key() == 'q') tank_2.shoot();   
                 break;
             }
             case Event::KEY_RELEASE :
@@ -51,7 +52,7 @@ void update_game_window(Window& game_window, Tank& tank_1, Tank& tank_2, All_Bul
     }
 }
 
-void make_map(Map* map,const vector<string>& wall_positions)
+void make_map(Map* map, const vector<string>& wall_positions)
 {
     for(int i = 0; i < wall_positions.size(); i++) {
         for(int j = 0; j < wall_positions[i].size(); j++) {
@@ -84,13 +85,17 @@ void make_map(Map* map,const vector<string>& wall_positions)
 
     int map_height = wall_positions.size();
     int map_width = wall_positions[0].size();
+
     Point top_right(map_width * GRID_SIZE, 0);
     Point down_right(map_width * GRID_SIZE, map_height * GRID_SIZE);
     Point down_left(0, map_height * GRID_SIZE);
+    
     Wall right_wall(top_right, down_right);
     Wall bottom_wall(down_left, down_right);
+    
     map->add_to_walls(right_wall);
     map->add_to_walls(bottom_wall);
+    map->unify_walls();
 }
 
 void read_map(string dir, int& win_width, int& win_height, Map* map, Point& t_1, Point& t_2) 
